@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gabriel-comeau/SimpleChatCommon"
-	"github.com/gabriel-comeau/termbox-uikit"
+	"github.com/gabriel-comeau/tbuikit"
 	"net"
 )
 
@@ -18,7 +18,7 @@ type ChatClient struct {
 // Sends a message to the client by serializing a message object into
 // a string and then converting this string to a byte slice and writing
 // it over the network.
-func (this *ChatClient) WriteMessage(message *termbox-uikit.ColorizedString) {
+func (this *ChatClient) WriteMessage(message *tbuikit.ColorizedString) {
 	bytesToWrite := []byte(SimpleChatCommon.Pack(message))
 	this.netClient.Write(bytesToWrite)
 }

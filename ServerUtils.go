@@ -3,14 +3,14 @@ package main
 import (
 	"fmt"
 	"github.com/gabriel-comeau/SimpleChatCommon"
-	"github.com/gabriel-comeau/termbox-uikit"
+	"github.com/gabriel-comeau/tbuikit"
 	"strconv"
 	"strings"
 )
 
 // Creates a new message object from a string (the message body) and a chat client object,
 // which is used to get the message's color
-func createMessageForBroadCast(text string, sender *ChatClient) *termbox-uikit.ColorizedString {
+func createMessageForBroadCast(text string, sender *ChatClient) *tbuikit.ColorizedString {
 	formatted := formatBroadCastMessage(text, sender)
 	msg := SimpleChatCommon.Create(formatted, sender.color)
 	return msg

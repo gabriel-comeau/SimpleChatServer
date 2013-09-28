@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/gabriel-comeau/SimpleChatCommon"
-	"github.com/gabriel-comeau/termbox-uikit"
+	"github.com/gabriel-comeau/tbuikit"
 	"net"
 	"strconv"
 )
@@ -81,7 +81,7 @@ func broadcastOutput(text string, sender *ChatClient) {
 
 // Perform the actual broadcast - send the message out
 // to every client currently in the client holder.
-func broadcast(msg *termbox-uikit.ColorizedString) {
+func broadcast(msg *tbuikit.ColorizedString) {
 	for _, c := range clientHolder.getClients() {
 		c.WriteMessage(msg)
 	}
