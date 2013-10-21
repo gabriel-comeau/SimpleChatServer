@@ -69,6 +69,7 @@ func handleClientInput(client *ChatClient) {
 		}
 	}
 	// EOF happened
+	fmt.Printf("Client %v disconnected from server\n", client.id)
 	clientHolder.removeClient(client.id)
 }
 
