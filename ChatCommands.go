@@ -19,8 +19,26 @@ func parseCommand(line string, client *ChatClient, clientHolder *ClientHolder) b
 	nickCmdRegex := regexp.MustCompile(`^\/nick.+$`)
 	colorCmdRegex := regexp.MustCompile(`^\/color.+$`)
 	whisperCmdRegex := regexp.MustCompile(`^\/w(|hisper) .+ .+$`)
+	uiWhoCmdRegex := regexp.MustCompile(SimpleChatCommon.WHO_MESSAGE_REGEX_STR)
 
 	line = strings.Trim(line, "\n ")
+
+	if uiWhoCmdRegex.MatchString(line) {
+		msgRaw := ""
+		for _, c := range clientHolder.getClients() {
+			nick := ""
+			if c.id == client.id {
+				nick += "**" + c.nick + "**"
+			} else {
+				nick = c.nick
+			}
+
+			msgRaw += SimpleChatCommon.WHO_MESSAGE_TOKEN + nick
+		}
+
+		msg := SimpleChatCommon.Create(msgRaw, "white")
+		client.WriteMessage(msg)
+	}
 
 	if helpCmdRegex.MatchString(line) {
 		helpSl := make([]string, 0)
